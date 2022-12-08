@@ -1,23 +1,28 @@
 import '../scss/style.scss'
-import typescriptLogo from '../typescript.svg'
-import { setupCounter } from './modules/counter'
+import mouseMove from './modules/mousemove'
 
-document.querySelector<HTMLDivElement>('#app')!.innerHTML = `
-  <div>
-    <a href="https://vitejs.dev" target="_blank">
-      <img src="/vite.svg" class="logo" alt="Vite logo" />
-    </a>
-    <a href="https://www.typescriptlang.org/" target="_blank">
-      <img src="${typescriptLogo}" class="logo vanilla" alt="TypeScript logo" />
-    </a>
-    <h1>Vite + TypeScript</h1>
-    <div class="card">
-      <button id="counter" type="button"></button>
-    </div>
-    <p class="read-the-docs">
-      Click on the Vite and TypeScript logos to learn more
-    </p>
-  </div>
-`
+class Intera10 extends mouseMove {
 
-setupCounter(document.querySelector<HTMLButtonElement>('#counter')!)
+  canvas: HTMLCanvasElement;
+  // ctx: CanvasRenderingContext2D;
+
+  constructor() {
+    super();
+
+    this.canvas = <HTMLCanvasElement>document.getElementById("canvas");
+    // this.ctx = this.canvas.getContext("2d");
+
+    this.bind();
+  }
+  update() {
+    console.log(this.mouse.x);
+    window.requestAnimationFrame(this.update.bind(this));
+  }
+  bind() {
+    // window.requestAnimationFrame(this.update.bind(this));
+  }
+}
+
+window.addEventListener('DOMContentLoaded', () => {
+  new Intera10();
+});
