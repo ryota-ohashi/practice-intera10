@@ -1,28 +1,35 @@
 import '../scss/style.scss'
-import mouseMove from './modules/mousemove'
+import p5 from "p5";
 
-class Intera10 extends mouseMove {
+const sketch = (p: p5) => {
 
-  canvas: HTMLCanvasElement;
-  // ctx: CanvasRenderingContext2D;
-
-  constructor() {
-    super();
-
-    this.canvas = <HTMLCanvasElement>document.getElementById("canvas");
-    // this.ctx = this.canvas.getContext("2d");
-
-    this.bind();
+  // マウス位置
+  let mouse = {
+    x:0,
+    y:0
   }
-  update() {
-    console.log(this.mouse.x);
-    window.requestAnimationFrame(this.update.bind(this));
-  }
-  bind() {
-    // window.requestAnimationFrame(this.update.bind(this));
-  }
-}
 
-window.addEventListener('DOMContentLoaded', () => {
-  new Intera10();
-});
+  let canvas;
+
+  p.setup = () => {
+    p.createCanvas(p.windowWidth, p.windowHeight);
+    canvas = <HTMLCanvasElement>document.querySelector(".p5Canvas");
+    bindMousemove(canvas);
+  };
+
+  p.draw = () => {
+    p.fill(0);
+    p.ellipse(mouse.x, mouse.y, 100, 100);
+  };
+
+  const mouseMove = (e: MouseEvent) => {
+    mouse.x = e.clientX;
+    mouse.y = e.clientY;
+  }
+
+  const bindMousemove = (target: HTMLCanvasElement) => {
+    target.addEventListener('mousemove', mouseMove);
+  }
+};
+
+new p5(sketch);

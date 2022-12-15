@@ -1,8 +1,8 @@
 export default class Mousemove {
 
+  canvas: HTMLCanvasElement;
   mouse: {x:number, y:number};
   bindMouseMove: any;
-  // scrollY: number;
 
   constructor() {
     // マウス位置
@@ -11,18 +11,16 @@ export default class Mousemove {
       y:0
     }
 
-    // スクロール量
-    // this.scrollY = window.pageYOffset;
+    this.canvas = <HTMLCanvasElement>document.getElementById("canvas");
 
-    this.bindMouseMove = this.mouseMove.bind(this);
-    this.bindMousemove();
+    // イベント
+    this.bindMouseMove = this.mouseMove.bind(this, this.canvas);
   }
-  mouseMove(e: MouseEvent) {
-    this.mouse.x = e.pageX;
-    this.mouse.y = e.pageY;
-    // this.scrollY = window.pageYOffset;
+  mouseMove(e: any) {
+    this.mouse.x = e.clientX;
+    this.mouse.y = e.clientY;
   }
-  bindMousemove(){
-    window.addEventListener('mousemove', this.bindMouseMove);
+  bindMousemove(target: HTMLCanvasElement){
+    target.addEventListener('mousemove', this.bindMouseMove);
   }
 }
