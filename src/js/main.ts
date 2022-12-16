@@ -9,7 +9,7 @@ const sketch = (p: p5) => {
     y:0
   }
 
-  let imgPath: string = "/window2.png";
+  let imgPath: string = "/window.png";
   let canvas;
   let img: any;
   let isClicked: boolean = false;
