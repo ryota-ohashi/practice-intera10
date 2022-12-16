@@ -24,6 +24,7 @@ const sketch = (p: p5) => {
     bindMousemove(canvas);
 
     p.image(img, 0, 0, p.windowWidth, p.windowHeight)
+    document.querySelector(".loader-wrap")!.classList.add("close");
   };
 
   p.draw = () => {
