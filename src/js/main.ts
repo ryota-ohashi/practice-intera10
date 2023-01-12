@@ -11,7 +11,7 @@ const sketch = (p: p5) => {
 
   let imgPath: string = "./window.png";
   let canvas;
-  let img: any;
+  let img: p5.Image;
   let isClicked: boolean = false;
 
   p.preload = () => {
